@@ -1,0 +1,76 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.4'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'jacoco'
+    id "org.owasp.dependencycheck" version "6.5.3"
+    id "org.sonarqube" version "6.0.1.5171"
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "SantiagoCardenasFranco_prueba"
+    property "sonar.organization", "santiagocardenasfranco"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
+}
+
+group = 'co.edu.uco.burstcar'
+version = '0.0.1'
+java.sourceCompatibility = '21'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+
+    implementation 'org.springframework.boot:spring-boot-starter-undertow'
+
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
+
+    testImplementation 'com.h2database:h2:2.1.214'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.tngtech.archunit:archunit-junit5:1.1.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    implementation('io.github.wimdeblauwe:error-handling-spring-boot-starter:4.5.0')
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'com.auth0:java-jwt:4.4.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    implementation 'com.h2database:h2:2.1.214'
+
+    implementation("org.modelmapper:modelmapper:3.2.0")
+
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+    additionalSourceDirs files("aplicacion/src/main/java")
+    additionalClassDirs files("aplicacion/build/classes/java/main")
+}
