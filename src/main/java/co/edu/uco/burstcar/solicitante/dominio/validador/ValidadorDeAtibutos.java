@@ -13,14 +13,14 @@ public class ValidadorDeAtibutos {
 
     private static void validateNoNulos(String valor, String nombreAtributo) {
         if(valor == null || valor.isBlank()) {
-            throw new IllegalArgumentException("El atributo" + nombreAtributo +" no puede estar nulo");
+            throw new IllegalArgumentException("El atributo " + nombreAtributo +" no puede estar nulo");
         }
     }
 
     private static void validarTamanoTexto(String valor, String nombreAtributo, int tamano){
         if(valor.length()>=tamano)
         {
-            throw new IllegalArgumentException("El " + nombreAtributo +" es más grande de lo permitido, " +
+            throw new IllegalArgumentException("El atributo " + nombreAtributo +" es más grande de lo permitido, " +
                     "solo soporta " + tamano + " caracteres");
         }
     }

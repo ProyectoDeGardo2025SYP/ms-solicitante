@@ -2,6 +2,7 @@ package co.edu.uco.burstcar.solicitante.aplicacion.mapeador.solicitante.impl;
 
 import co.edu.uco.burstcar.solicitante.aplicacion.casodeuso.solicitante.comando.dto.SolicitanteDto;
 import co.edu.uco.burstcar.solicitante.aplicacion.mapeador.MapeadorAplicacion;
+import co.edu.uco.burstcar.solicitante.dominio.modelo.IdentificacionSolicitante;
 import co.edu.uco.burstcar.solicitante.dominio.modelo.Solicitante;
 import co.edu.uco.burstcar.solicitante.dominio.puerto.RepositorioIdentificacionSolicitante;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ public class MapeadorSolicitanteAplicacion implements MapeadorAplicacion<Solicit
 
     @Override
     public Solicitante aDominio(SolicitanteDto dto) {
+        IdentificacionSolicitante identificacionSolicitante =
+                this.repositorioIdentificacionSolicitante.asociarTipoIdentificacionPrestador(dto.getCategoriaIdentificador());
+
         return Solicitante.nuevoSolicitante(dto.getNumeroIdentificacion(), dto.getNombre(), dto.getUsuario(), dto.getContrasena(),
-                dto.getNumeroTelefonico(),
-                this.repositorioIdentificacionSolicitante.asociarTipoIdentificacionPrestador(dto.getCategoriaIdentificador()));
+                dto.getNumeroTelefonico(), identificacionSolicitante);
     }
 }
