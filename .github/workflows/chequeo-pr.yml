@@ -1,11 +1,11 @@
-name: Pull Request Checks
+name: Pull Request Chequeo
 on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened]
 jobs:
   pr-validation:
-    name: PR Quality Checks (No Sonar)
+    name: PR Chequeos de calidad (No Sonar)
     runs-on: ubuntu-latest
 
     steps:
@@ -19,14 +19,14 @@ jobs:
           java-version: 21
           distribution: 'zulu'
 
-      - name: Give gradlew execution permission
+      - name: Permisos de ejecucion gradlew
         run: chmod +x ./gradlew
 
-      - name: Compile
+      - name: Compilacion
         run: ./gradlew compileJava
 
-      - name: Run Tests
+      - name: Tests
         run: ./gradlew test
 
-      - name: Build Jar
+      - name: Construccion del Jar
         run: ./gradlew bootJar
