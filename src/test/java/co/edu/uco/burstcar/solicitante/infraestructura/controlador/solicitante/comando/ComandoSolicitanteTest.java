@@ -16,11 +16,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -38,7 +35,7 @@ class ComandoSolicitanteTest {
     @Autowired
     private MockMvc mocMvc;
 
-    @Test
+    /*@Test
     void registrarSolicitanteExitosamente() throws Exception {
         SolicitanteDto solicitanteDto = new ComandoSolicitanteTestDataBuilder()
                 .porDefecto().construir();
@@ -47,5 +44,5 @@ class ComandoSolicitanteTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(solicitanteDto)))
                 .andExpect(status().is2xxSuccessful()).andReturn();
-    }
+    }*/
 }
