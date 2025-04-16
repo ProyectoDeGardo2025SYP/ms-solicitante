@@ -9,8 +9,8 @@ plugins {
 
 sonar {
   properties {
-    property "sonar.projectKey", "SantiagoCardenasFranco_prueba"
-    property "sonar.organization", "santiagocardenasfranco"
+    property "sonar.projectKey", "ProyectoDeGardo2025SYP_ms-solicitante"
+    property "sonar.organization", "proyectodegardo2025syp"
     property "sonar.host.url", "https://sonarcloud.io"
   }
 }
