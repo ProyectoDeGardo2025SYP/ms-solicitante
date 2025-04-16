@@ -1,7 +1,6 @@
 package co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
