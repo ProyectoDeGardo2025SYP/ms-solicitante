@@ -5,7 +5,6 @@ import co.edu.uco.burstcar.solicitante.aplicacion.mapeador.solicitante.impl.Mape
 import co.edu.uco.burstcar.solicitante.dominio.modelo.IdentificacionSolicitante;
 import co.edu.uco.burstcar.solicitante.dominio.modelo.Solicitante;
 import co.edu.uco.burstcar.solicitante.dominio.puerto.RepositorioIdentificacionSolicitante;
-import co.edu.uco.burstcar.solicitante.dominio.testdatabuilder.modelo.IdentificacionSolicitanteTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

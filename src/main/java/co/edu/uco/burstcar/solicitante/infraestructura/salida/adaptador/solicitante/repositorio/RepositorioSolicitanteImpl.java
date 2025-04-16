@@ -9,12 +9,12 @@ import co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador.solicita
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepositorioSolicitante implements co.edu.uco.burstcar.solicitante.dominio.puerto.RepositorioSolicitante {
+public class RepositorioSolicitanteImpl implements co.edu.uco.burstcar.solicitante.dominio.puerto.RepositorioSolicitante {
 
     private final RepositorioSolicitanteJpa repositorioSolicitanteJpa;
     private final RepositorioIdentificacionSolicitanteJpa repositorioIdentificacionSolicitanteJpa;
 
-    public RepositorioSolicitante(RepositorioSolicitanteJpa repositorioSolicitanteJpa, RepositorioIdentificacionSolicitanteJpa repositorioIdentificacionSolicitanteJpa) {
+    public RepositorioSolicitanteImpl(RepositorioSolicitanteJpa repositorioSolicitanteJpa, RepositorioIdentificacionSolicitanteJpa repositorioIdentificacionSolicitanteJpa) {
         this.repositorioSolicitanteJpa = repositorioSolicitanteJpa;
         this.repositorioIdentificacionSolicitanteJpa = repositorioIdentificacionSolicitanteJpa;
     }
