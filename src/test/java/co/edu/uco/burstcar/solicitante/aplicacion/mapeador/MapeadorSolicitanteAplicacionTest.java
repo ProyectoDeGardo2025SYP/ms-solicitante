@@ -40,7 +40,7 @@ public class MapeadorSolicitanteAplicacionTest {
         dto.setNumeroTelefonico(1234567890L);
         dto.setCategoriaIdentificador("CC");
         IdentificacionSolicitante identificacionMock = new IdentificacionSolicitante();
-        when(repositorioIdentificacionSolicitante.asociarTipoIdentificacionPrestador("CC"))
+        when(repositorioIdentificacionSolicitante.asociarTipoIdentificacionSolicitante("CC"))
                 .thenReturn(identificacionMock);
 
         Solicitante dominio = mapeador.aDominio(dto);
@@ -52,8 +52,8 @@ public class MapeadorSolicitanteAplicacionTest {
         Assertions.assertEquals("secreta", dominio.getContrasena());
         Assertions.assertEquals(1234567890L, dominio.getNumeroTelefonico());
         Assertions.assertEquals(identificacionMock, dominio.getIdentificacionSolicitante());
-        verify(repositorioIdentificacionSolicitante, Mockito.times(1)).asociarTipoIdentificacionPrestador("CC");
-        verify(repositorioIdentificacionSolicitante).asociarTipoIdentificacionPrestador("CC");
+        verify(repositorioIdentificacionSolicitante, Mockito.times(1)).asociarTipoIdentificacionSolicitante("CC");
+        verify(repositorioIdentificacionSolicitante).asociarTipoIdentificacionSolicitante("CC");
     }
 
     @Test
@@ -66,7 +66,7 @@ public class MapeadorSolicitanteAplicacionTest {
         dto.setNumeroTelefonico(1234567890L);
         dto.setCategoriaIdentificador("CC");
         dto.setCategoriaIdentificador("otra");
-        when(repositorioIdentificacionSolicitante.asociarTipoIdentificacionPrestador("otra"))
+        when(repositorioIdentificacionSolicitante.asociarTipoIdentificacionSolicitante("otra"))
                 .thenThrow(new IllegalArgumentException("El atributo Identificación del solicitante no puede estar nulo"));
 
         Assertions.assertThrows(IllegalArgumentException.class,  () -> mapeador.aDominio(dto));

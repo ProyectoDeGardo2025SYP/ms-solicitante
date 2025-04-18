@@ -4,9 +4,9 @@ import java.util.List;
 
 public class ValidadorDeAtibutos {
 
-    private static final String PATTERN = "^(?=.*\\d)(?=.*[\\u0021-\\u002b\\u003c-\\u0040])(?=.*[A-Z])(?=.*[a-z])\\S{8,16}";
-    private static final String PATTERN_NUMBER = "[0-9]*";
-    private static final String PATTERN_DECIMAL = "^-?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$";
+    private static final String PatronContrasena = "^(?=.*\\d)(?=.*[\\u0021-\\u002b\\u003c-\\u0040])(?=.*[A-Z])(?=.*[a-z])\\S{8,16}";
+    private static final String patronNumeroEntero = "[0-9]*";
+    private static final String patronNumeroDecimal = "^-?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$";
 
     private ValidadorDeAtibutos() {
     }
@@ -60,7 +60,7 @@ public class ValidadorDeAtibutos {
 
     public static void specialCharactersPassword(String password, String message)
     {
-        if(!acceptancePatternPassword(password, PATTERN))
+        if(!acceptancePatternPassword(password, PatronContrasena))
         {
             throw new IllegalArgumentException(message);
         }

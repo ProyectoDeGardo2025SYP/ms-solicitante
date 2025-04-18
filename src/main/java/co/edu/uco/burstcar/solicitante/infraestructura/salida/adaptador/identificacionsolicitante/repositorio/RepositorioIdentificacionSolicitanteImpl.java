@@ -16,7 +16,7 @@ public class RepositorioIdentificacionSolicitanteImpl implements co.edu.uco.burs
 
 
     @Override
-    public IdentificacionSolicitante asociarTipoIdentificacionPrestador(String codigo) {
+    public IdentificacionSolicitante asociarTipoIdentificacionSolicitante(String codigo) {
         EntidadIdentificacionSolicitante entidadIdentificacionSolicitante =
                 this.repositorioIdentificacionSolicitanteJpa.findByCodigo(codigo);
         if(entidadIdentificacionSolicitante == null){

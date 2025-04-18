@@ -19,7 +19,7 @@ public class MapeadorSolicitanteAplicacion implements MapeadorAplicacion<Solicit
     @Override
     public Solicitante aDominio(SolicitanteDto dto) {
         IdentificacionSolicitante identificacionSolicitante =
-                this.repositorioIdentificacionSolicitante.asociarTipoIdentificacionPrestador(dto.getCategoriaIdentificador());
+                this.repositorioIdentificacionSolicitante.asociarTipoIdentificacionSolicitante(dto.getCategoriaIdentificador());
 
         return Solicitante.nuevoSolicitante(dto.getNumeroIdentificacion(), dto.getNombre(), dto.getUsuario(), dto.getContrasena(),
                 dto.getNumeroTelefonico(), identificacionSolicitante);

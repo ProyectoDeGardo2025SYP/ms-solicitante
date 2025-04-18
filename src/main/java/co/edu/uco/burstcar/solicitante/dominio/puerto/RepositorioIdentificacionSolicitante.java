@@ -4,5 +4,5 @@ import co.edu.uco.burstcar.solicitante.dominio.modelo.IdentificacionSolicitante;
 
 public interface RepositorioIdentificacionSolicitante {
 
-    IdentificacionSolicitante asociarTipoIdentificacionPrestador(String codigo);
+    IdentificacionSolicitante asociarTipoIdentificacionSolicitante(String codigo);
 }

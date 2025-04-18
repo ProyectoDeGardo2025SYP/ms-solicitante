@@ -1,5 +1,6 @@
 package co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador.solicitante.repositorio;
 
+import co.edu.uco.burstcar.solicitante.dominio.dto.SolicitanteConsulta;
 import co.edu.uco.burstcar.solicitante.dominio.modelo.IdentificacionSolicitante;
 import co.edu.uco.burstcar.solicitante.dominio.modelo.Solicitante;
 import co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador.identificacionsolicitante.entidad.EntidadIdentificacionSolicitante;
@@ -47,6 +48,16 @@ public class RepositorioSolicitanteImpl implements co.edu.uco.burstcar.solicitan
                 entidadSolicitante.getIdentificador(), entidadSolicitante.getNumeroIdentificacion(), entidadSolicitante.getNombre(),
                 entidadSolicitante.getUsuario(), entidadSolicitante.getContrasena(), entidadSolicitante.getNumeroTelefonico(),
                 identificacionSolicitante);
+    }
+
+    @Override
+    public SolicitanteConsulta consultarSolicitante(String numeroIdentificacion) {
+        EntidadSolicitante entidadSolicitante =
+                this.repositorioSolicitanteJpa.consultarSolicitantePorSuIdentificacion(numeroIdentificacion);
+
+        return SolicitanteConsulta.solicitanteConsulta(entidadSolicitante.getIdentificador(),
+                entidadSolicitante.getNumeroIdentificacion(), entidadSolicitante.getNombre(),
+                entidadSolicitante.getNumeroTelefonico(), entidadSolicitante.getEntidadIdentificacionSolicitante().getIdentificacionCategoriaId());
     }
 
     @Override

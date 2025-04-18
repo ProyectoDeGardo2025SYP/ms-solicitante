@@ -18,7 +18,7 @@ public class MapeadorSolicitanteEmisorAplicacion implements MapeadorAplicacion<S
     @Override
     public SolicitanteEmisorDto aDominio(SolicitanteDto dto) {
         IdentificacionSolicitante identificacionSolicitante =
-                this.repositorioIdentificacionSolicitante.asociarTipoIdentificacionPrestador(dto.getCategoriaIdentificador());
+                this.repositorioIdentificacionSolicitante.asociarTipoIdentificacionSolicitante(dto.getCategoriaIdentificador());
         return new SolicitanteEmisorDto(dto.getNumeroIdentificacion(), dto.getNombre(), dto.getUsuario(), dto.getNumeroTelefonico(),
                 identificacionSolicitante.getNombre(), identificacionSolicitante.getIdentificacionCategoriaId(),
                 identificacionSolicitante.getIdentificador());
