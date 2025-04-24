@@ -26,12 +26,13 @@ public class ServicioGenerarTokenJWT implements ServicioGenerarToken {
     }
 
     @Override
-    public String generarToken(String user, String rol) {
+    public String generarToken(String user, String rol, String id) {
 
         return Jwts.builder()
                 .setIssuer("ms-solicitante")
                 .setSubject(user)
                 .claim("rol", rol)
+                .claim("numeroIdentificacion", id)
                 .setIssuedAt(createDate(LocalDateTime.now()))
                 .setExpiration(createDate(LocalDateTime.now().plusHours(1)))
                 .setId(UUID.randomUUID().toString())

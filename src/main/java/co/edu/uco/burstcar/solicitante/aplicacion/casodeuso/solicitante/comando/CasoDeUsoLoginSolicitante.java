@@ -27,6 +27,7 @@ public class CasoDeUsoLoginSolicitante {
             throw new IllegalStateException("Credenciales incorrectas");
         }
 
-        return new DtoResponse<>(this.servicioGenerarToken.generarToken(dto.getUsuario(), "solicitante"));
+        return new DtoResponse<>(this.servicioGenerarToken.generarToken(dto.getUsuario(), "solicitante",
+                solicitante.getNumeroIdentificacion()));
     }
 }
