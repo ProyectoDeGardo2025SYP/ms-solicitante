@@ -6,6 +6,6 @@ RUN chmod +x ./gradlew
 
 RUN ./gradlew clean bootJar --no-daemon
 FROM eclipse-temurin:21-jdk-alpine
-EXPOSE 8885
+EXPOSE 8887
 COPY --from=builder /app/build/libs/*.jar /app/app.jar
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
