@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface RepositorioSolicitanteJpa extends JpaRepository<EntidadSolicitante, UUID> {
 
-    EntidadSolicitante findByUsuarioAndContrasena(String usuario, String contrasena);
+    EntidadSolicitante findByUsuario(String usuario);
 
     @Query(value = "Select * From solicitante.solicitante WHERE " +
             "numero_identificacion = :numeroIdentificacion", nativeQuery = true)

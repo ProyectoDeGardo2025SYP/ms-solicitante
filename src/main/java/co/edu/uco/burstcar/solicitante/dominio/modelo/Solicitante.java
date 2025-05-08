@@ -1,9 +1,9 @@
 package co.edu.uco.burstcar.solicitante.dominio.modelo;
 
+import co.edu.uco.burstcar.solicitante.dominio.util.seguridad.EncriptadorContrasena;
 import co.edu.uco.burstcar.solicitante.dominio.validador.ValidadorDeAtibutos;
 import java.util.UUID;
 
-import co.edu.uco.burstcar.solicitante.dominio.validador.ValidadorDeObjetos;
 import lombok.NoArgsConstructor;
 
 
@@ -30,10 +30,11 @@ public class Solicitante extends EntidadIdentificador{
         ValidadorDeAtibutos.validarAtributosTexto(numeroIdentificacion, "Número de identificación", 12);
         ValidadorDeAtibutos.validarAtributosTexto(nombre, "nombre", 30);
         ValidadorDeAtibutos.validarAtributosTexto(usuario, "usuario", 15);
-        ValidadorDeAtibutos.validarAtributosTexto(contrasena, "contraseña", 16);
-        ValidadorDeObjetos.validateNoNulos(numeroTelefonico, "Número telefonico");
-        ValidadorDeObjetos.validateNoNulos(identificacionSolicitante, "Identificación del solicitante");
-        return new Solicitante(numeroIdentificacion, nombre, usuario, contrasena, numeroTelefonico, identificacionSolicitante);
+        ValidadorDeAtibutos.validarContrasena(contrasena);
+        ValidadorDeAtibutos.validarObjetoNoNulo(numeroTelefonico, "Número telefonico");
+        ValidadorDeAtibutos.validarObjetoNoNulo(identificacionSolicitante, "Identificación del solicitante");
+        String contrasenaEncriptada = EncriptadorContrasena.encriptarContrasenaConSalt(contrasena);
+        return new Solicitante(numeroIdentificacion, nombre, usuario, contrasenaEncriptada, numeroTelefonico, identificacionSolicitante);
     }
 
     private Solicitante(UUID identificador, String numeroIdentificacion, String nombre, String usuario, String contrasena, Long numeroTelefonico, IdentificacionSolicitante identificacionSolicitante) {
@@ -50,9 +51,8 @@ public class Solicitante extends EntidadIdentificador{
         ValidadorDeAtibutos.validarAtributosTexto(numeroIdentificacion, "Número de identificación", 12);
         ValidadorDeAtibutos.validarAtributosTexto(nombre, "nombre", 30);
         ValidadorDeAtibutos.validarAtributosTexto(usuario, "usuario", 15);
-        ValidadorDeAtibutos.validarAtributosTexto(contrasena, "contraseña", 16);
-        ValidadorDeObjetos.validateNoNulos(numeroTelefonico, "Número telefonico");
-        ValidadorDeObjetos.validateNoNulos(identificacionSolicitante, "Identificación del solicitante");
+        ValidadorDeAtibutos.validarObjetoNoNulo(numeroTelefonico, "Número telefonico");
+        ValidadorDeAtibutos.validarObjetoNoNulo(identificacionSolicitante, "Identificación del solicitante");
         return new Solicitante(id, numeroIdentificacion, nombre, usuario, contrasena, numeroTelefonico, identificacionSolicitante);
     }
 

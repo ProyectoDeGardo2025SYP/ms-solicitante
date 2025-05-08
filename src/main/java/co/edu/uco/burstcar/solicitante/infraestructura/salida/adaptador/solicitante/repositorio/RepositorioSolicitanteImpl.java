@@ -3,6 +3,7 @@ package co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador.solicit
 import co.edu.uco.burstcar.solicitante.dominio.dto.SolicitanteConsulta;
 import co.edu.uco.burstcar.solicitante.dominio.modelo.IdentificacionSolicitante;
 import co.edu.uco.burstcar.solicitante.dominio.modelo.Solicitante;
+import co.edu.uco.burstcar.solicitante.dominio.util.seguridad.EncriptadorContrasena;
 import co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador.identificacionsolicitante.entidad.EntidadIdentificacionSolicitante;
 import co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador.identificacionsolicitante.repositorio.jpa.RepositorioIdentificacionSolicitanteJpa;
 import co.edu.uco.burstcar.solicitante.infraestructura.salida.adaptador.solicitante.entidad.EntidadSolicitante;
@@ -36,7 +37,12 @@ public class RepositorioSolicitanteImpl implements co.edu.uco.burstcar.solicitan
 
     @Override
     public Solicitante realizarInicioSesion(String usuario, String contrasena) {
-        EntidadSolicitante entidadSolicitante = this.repositorioSolicitanteJpa.findByUsuarioAndContrasena(usuario, contrasena);
+        EntidadSolicitante entidadSolicitante = this.repositorioSolicitanteJpa.findByUsuario(usuario);
+
+        if (entidadSolicitante == null || !EncriptadorContrasena.validarContrasena(contrasena, entidadSolicitante.getContrasena())) {
+            throw new IllegalArgumentException("Usuario o contraseña incorrectos.");
+        }
+
         EntidadIdentificacionSolicitante entidadIdentificacionSolicitante = this.repositorioIdentificacionSolicitanteJpa
                 .findByCodigo(entidadSolicitante.getEntidadIdentificacionSolicitante().getIdentificacionCategoriaId());
 

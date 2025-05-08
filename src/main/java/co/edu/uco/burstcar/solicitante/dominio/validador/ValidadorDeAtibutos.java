@@ -4,10 +4,7 @@ import java.util.List;
 
 public class ValidadorDeAtibutos {
 
-    private static final String PatronContrasena = "^(?=.*\\d)(?=.*[\\u0021-\\u002b\\u003c-\\u0040])(?=.*[A-Z])(?=.*[a-z])\\S{8,16}";
-    private static final String patronNumeroEntero = "[0-9]*";
-    private static final String patronNumeroDecimal = "^-?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$";
-
+    private static final String PATRON_CONTRASENA = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,16}$";
     private ValidadorDeAtibutos() {
     }
 
@@ -17,10 +14,16 @@ public class ValidadorDeAtibutos {
         }
     }
 
+    public static void validarObjetoNoNulo(Object valor, String nombreAtributo) {
+        if(valor == null) {
+            throw new IllegalArgumentException("El atributo" + nombreAtributo +" no puede estar nulo");
+        }
+    }
+
     private static void validarTamanoTexto(String valor, String nombreAtributo, int tamano){
-        if(valor.length()>=tamano)
+        if(valor.length()>tamano)
         {
-            throw new IllegalArgumentException("El atributo " + nombreAtributo +" es más grande de lo permitido, " +
+            throw new IllegalArgumentException("El " + nombreAtributo +" es más grande de lo permitido, " +
                     "solo soporta " + tamano + " caracteres");
         }
     }
@@ -30,20 +33,6 @@ public class ValidadorDeAtibutos {
         validarTamanoTexto(valor, mensaje, tamano);
     }
 
-
-    public static void noEmpty(List<? extends Object> lista, String mensaje){
-        if(lista == null || lista.isEmpty()){
-            throw  new IllegalArgumentException(mensaje);
-        }
-    }
-
-    private static boolean acceptancePatternNumber(String valor, String pattern) {
-        return valor.matches(pattern);
-    }
-
-    private static boolean acceptancePatternDecimal(String valor, String pattern) {
-        return valor.matches(pattern);
-    }
 
     public static void sizePassword(String valor, String message)
     {
@@ -58,11 +47,29 @@ public class ValidadorDeAtibutos {
         return data.matches(pattern);
     }
 
-    public static void specialCharactersPassword(String password, String message)
-    {
-        if(!acceptancePatternPassword(password, PatronContrasena))
-        {
-            throw new IllegalArgumentException(message);
+    public static void validarContrasena(String contrasena) {
+        if (contrasena == null) {
+            throw new IllegalArgumentException("La contraseña no puede ser nula.");
+        }
+
+        if (contrasena.length() < 8 || contrasena.length() > 16) {
+            throw new IllegalArgumentException("La contraseña debe tener entre 8 y 16 caracteres.");
+        }
+
+        if (!contrasena.matches(".*[a-z].*")) {
+            throw new IllegalArgumentException("La contraseña debe contener al menos una letra minúscula.");
+        }
+
+        if (!contrasena.matches(".*[A-Z].*")) {
+            throw new IllegalArgumentException("La contraseña debe contener al menos una letra mayúscula.");
+        }
+
+        if (!contrasena.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("La contraseña debe contener al menos un número.");
+        }
+
+        if (!contrasena.matches(".*[^a-zA-Z\\d].*")) {
+            throw new IllegalArgumentException("La contraseña debe contener al menos un carácter especial.");
         }
     }
 }

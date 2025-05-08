@@ -19,8 +19,6 @@ public class CasoDeUsoLoginSolicitante {
     }
 
     public DtoResponse<String> ejecutar(LoginDto dto) {
-
-        //String encrypted = this.servicioDeEncriptado.ejecutarEncriptacion(dto.getContrasena());
         Solicitante solicitante = this.repositorioSolicitante.realizarInicioSesion(dto.getUsuario(), dto.getContrasena());
 
         if(solicitante == null) {
